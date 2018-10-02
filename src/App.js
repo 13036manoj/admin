@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Layout, Menu, Icon } from 'antd';
-import { HashRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link, withRouter ,Redirect} from 'react-router-dom';
 import { Breadcrumb, Alert } from 'antd';
 import  Users  from './users';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+  }
+ 
   
   getMenuItemKey=()=>{
     const { location } = this.props;
@@ -118,6 +123,7 @@ class App extends Component {
         <Content style={{ margin: '24px 16px 0' }}>
           <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
           <Switch>
+          <Route exact path="/" render={() => <Redirect to="/users"/>} />
            <Route path="/users" component={Users} />
            <Route path="/teams" component={()=><div>teams</div>} />
            <Route path="/tournaments" component={()=><div>tournaments</div>} />
@@ -127,9 +133,9 @@ class App extends Component {
           </Switch>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        {/* <Footer style={{ textAlign: 'center' }}>
          will work like pagination
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
     );
